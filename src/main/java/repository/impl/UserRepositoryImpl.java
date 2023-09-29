@@ -23,7 +23,7 @@ public class UserRepositoryImpl extends BaseEntityRepositoryImpl<Integer, String
 
     @Override
     public String getColumnsName() {
-        return "(name)";
+        return "(nameOfUsers)";
     }
 
     @Override
@@ -41,12 +41,13 @@ public class UserRepositoryImpl extends BaseEntityRepositoryImpl<Integer, String
 
 
     @Override
-    protected void fillParamForStatement(PreparedStatement preparedStatement, User entity, boolean b) {
+    protected void fillParamForStatement(PreparedStatement preparedStatement, User entity, boolean b) throws SQLException {
+        preparedStatement.setString(1, entity.getName());
 
     }
 
     @Override
     protected String getUpdateQueryParams() {
-        return null;
+       return "nameOfUsers=?";
     }
 }

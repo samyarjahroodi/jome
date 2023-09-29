@@ -21,7 +21,7 @@ public abstract class BaseEntityRepositoryImpl<ID extends Serializable, NAME ext
 
     @Override
     public void Save(TYPE entity) throws SQLException {
-        String sql = "INSERT INTO " + getTableName() + "  " + getColumnsName() + " VALUES " + getCountQuestionMarkForParams();
+        String sql = "INSERT INTO " + getTableName() + " " + getColumnsName() + " VALUES " + getCountQuestionMarkForParams();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         fillParamForStatement(preparedStatement, entity, false);
         preparedStatement.executeUpdate();
@@ -41,7 +41,7 @@ public abstract class BaseEntityRepositoryImpl<ID extends Serializable, NAME ext
 
     @Override
     public void update(TYPE entity) throws SQLException {
-        String sql = "UPDATE FROM" + getTableName() + "SET " + getUpdateQueryParams() + "WHERE id=" + entity.getId();
+        String sql = " UPDATE " + getTableName() + " SET " + getUpdateQueryParams() + " WHERE id=" + entity.getId();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         fillParamForStatement(preparedStatement, entity, false);
         preparedStatement.executeUpdate();
@@ -62,7 +62,7 @@ public abstract class BaseEntityRepositoryImpl<ID extends Serializable, NAME ext
 
     @Override
     public void delete(ID id) throws SQLException {
-        String sql = "DELET FROM " + getTableName() + "WHERE id=?";
+        String sql = "DELETE FROM " + getTableName() + " WHERE id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, (Integer) id);
         preparedStatement.executeUpdate();
@@ -76,7 +76,7 @@ public abstract class BaseEntityRepositoryImpl<ID extends Serializable, NAME ext
 
     protected abstract TYPE mapResultSetEntity(ResultSet resultSet) throws SQLException;
 
-    protected abstract void fillParamForStatement(PreparedStatement preparedStatement, TYPE entity, boolean b);
+    protected abstract void fillParamForStatement(PreparedStatement preparedStatement, TYPE entity, boolean b) throws SQLException;
 
     protected abstract String getUpdateQueryParams();
 

@@ -25,22 +25,22 @@ public class BaseEntityServiceImpl
     }
 
     @Override
-    public TYPE findById(ID id) {
+    public TYPE findById(ID id) throws SQLException {
         return repository.findById(id);
     }
 
     @Override
-    public void update(TYPE entity) {
+    public void update(TYPE entity) throws SQLException {
         repository.update(entity);
     }
 
     @Override
-    public TYPE findByName(NAME name) {
+    public TYPE findByName(NAME name) throws SQLException {
         return repository.findByName(name);
     }
 
     @Override
-    public void delete(ID id) {
+    public void delete(ID id) throws SQLException {
         repository.delete(id);
     }
 }
