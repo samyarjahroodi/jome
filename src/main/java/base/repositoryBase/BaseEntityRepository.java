@@ -4,7 +4,8 @@ import base.domain.BaseEntity;
 
 import java.io.Serializable;
 
-public interface BaseEntityRepository<ID extends Serializable, NAME extends String, TYPE extends BaseEntity<ID, NAME>> {
+public interface BaseEntityRepository<ID extends Serializable,
+        NAME extends String, TYPE extends BaseEntity<ID, NAME>> {
     void Save(TYPE entity);
 
     TYPE findById(ID id);
