@@ -8,4 +8,5 @@ import java.io.Serializable;
 public interface UserRepository extends
         BaseEntityRepository<Integer, String, User> {
 
+
 }
